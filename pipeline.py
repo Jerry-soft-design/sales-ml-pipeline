@@ -28,13 +28,13 @@ def setup_logging(logging_config):
         ]
     )
 
-# Paso 1 – Cargar configuración
+# Cargar configuración
 def load_config(config_path):
     with open(config_path, "r") as file:
         config = yaml.safe_load(file)
     return config
 
-# Paso 2 – Cargar datos
+# Cargar datos
 def load_data(path):
     logging.info(f"Cargando datos desde: {path}")
 
@@ -76,7 +76,7 @@ def apply_derived_features(df, derived_config):
     return df
 
 
-# Paso 3 – Feature engineering
+# Feature engineering
 def create_features(df, feature_config):
     logging.info("Creando features desde configuración")
 
@@ -95,7 +95,7 @@ def create_features(df, feature_config):
 
     return features_encoded, target
 
-# Paso 4 – KPIs automáticos
+# KPIs automáticos
 def calculate_kpis(df):
     kpis = {
         "total_sales": df["Sales"].sum(),
@@ -153,7 +153,7 @@ def get_model(model_config, input_dim=None):
     else:
         raise ValueError(f"Modelo no soportado: {model_type}")
 
-#  Paso 5 –Entrenar modelo
+# Entrenar modelo
 def train_model(X_train, y_train, model, model_type, model_params):
     logging.info(f"Entrenando modelo: {model_type}")
 
@@ -172,7 +172,7 @@ def train_model(X_train, y_train, model, model_type, model_params):
     logging.info("Entrenamiento finalizado")
     return model
 
-#  Paso 6 –Evaluar modelo
+# Evaluar modelo
 def evaluate_model(model, X_test, y_test, model_type):
     logging.info("Evaluando modelo")
 
@@ -196,7 +196,7 @@ def evaluate_model(model, X_test, y_test, model_type):
 
 
 
-#M  Paso 7 – AIN PIPELINE
+# MAIN PIPELINE
 def main(config):
     logging.info("Pipeline iniciado")
     logging.info(f"Modelo seleccionado: {config['model']['type']}")
@@ -248,7 +248,7 @@ def main(config):
         model_params
     )
 
-    # Evaluate
+    # Evaluacion
     metrics, predictions = evaluate_model(
     model,
     X_test,
@@ -283,7 +283,7 @@ def parse_args():
 
     return parser.parse_args()
 
-# Paso 8 – Ejecutar
+# Ejecutar
 if __name__ == "__main__":
     args = parse_args()
     config = load_config(args.config)

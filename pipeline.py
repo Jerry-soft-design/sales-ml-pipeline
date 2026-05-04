@@ -1,4 +1,4 @@
-# Paso 1 – Imports
+# Imports
 import logging
 import pandas as pd
 import numpy as np

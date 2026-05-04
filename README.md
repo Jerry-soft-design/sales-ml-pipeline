@@ -1,45 +1,77 @@
-# 📊 Sales Machine Learning Pipeline
+📊 Sales Machine Learning Pipeline
+Proyecto de análisis y predicción de ventas diseñado para simular un escenario real de trabajo en entornos corporativos.
+Este pipeline automatiza el proceso completo de:
 
-Pipeline de Machine Learning end-to-end para la predicción de ventas a partir de datos históricos de negocio.
+análisis de datos comerciales,
+generación de indicadores clave (KPIs),
+entrenamiento de modelos predictivos,
+permitiendo estimar ventas futuras de manera reproducible y configurable.
 
-El proyecto implementa un flujo completo que incluye:
-- carga y limpieza de datos
-- ingeniería de características
-- cálculo de KPIs
-- entrenamiento y evaluación de modelos
-- configuración externa mediante YAML
-- ejecución vía línea de comandos (CLI)
-- logging profesional
+💼 ¿Qué problema de negocio resuelve?
+En muchas organizaciones, los análisis de ventas:
 
----
+se hacen de forma manual,
+dependen de notebooks difíciles de reutilizar,
+no son fáciles de mantener ni repetir.
 
-## 🎯 Objetivo
+Este proyecto propone una solución automatizada que:
 
-Construir un pipeline reproducible, configurable y orientado a entornos corporativos reales, evitando hardcodes y separando claramente la lógica de la configuración.
+analiza datos históricos de ventas,
+genera métricas clave para toma de decisiones,
+entrena modelos de Machine Learning para predicción,
+puede ejecutarse con un solo comando.
 
----
 
-## 🧠 Modelos soportados
+🧠 ¿Qué hace el pipeline?
+De forma resumida, el sistema:
 
-- LightGBM (modelo principal)
-- XGBoost (alternativo)
-- Red neuronal (MLP) como opción experimental
+Carga y limpia datos históricos de ventas
+Genera KPIs como:
 
-En entornos corporativos se recomienda el uso de modelos de boosting para datos tabulares.
+ventas totales,
+rentabilidad,
+tiempos de envío
 
----
 
-## 🚀 Ejecución
+Crea variables relevantes para el modelo
+Entrena modelos predictivos
+Evalúa su desempeño
+Genera resultados y logs automáticamente
 
-```bash
+Todo el proceso es reproducible y configurable, sin modificar el código.
+
+🤖 Modelos predictivos utilizados
+El pipeline permite entrenar distintos modelos, seleccionados según su idoneidad para datos de negocio:
+
+LightGBM (modelo principal, recomendado)
+XGBoost (alternativo)
+Red neuronal (MLP) como opción experimental
+
+En escenarios reales de datos tabulares, los modelos de boosting suelen ofrecer mejor desempeño y estabilidad.
+
+
+Ejecución del proyecto
+El pipeline se ejecuta desde la línea de comandos:
+
 python pipeline.py --config config.yaml
 
-⚙️ Tecnologías
+Esto permite:
+
+cambiar parámetros sin tocar el código,
+reutilizar el pipeline con nuevos datos,
+integrarlo fácilmente en otros flujos de trabajo.
+
+
+🛠️ Tecnologías utilizadas
 
 Python
 Pandas, NumPy
-Scikit-learn
+Scikit‑learn
 LightGBM, XGBoost
-YAML
+YAML (configuración)
 Logging
-CLI
+Command Line Interface (CLI)
+
+
+📝 Nota sobre entornos corporativos
+Algunas funcionalidades (como redes neuronales mediante TensorFlow o Docker) están presentes como opciones, pero el pipeline fue diseñado para funcionar correctamente en entornos corporativos con restricciones técnicas, priorizando modelos y herramientas ampliamente compatibles.

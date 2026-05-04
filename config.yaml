@@ -1,0 +1,72 @@
+# neural_network requiere TensorFlow y CPU con soporte AVX
+# en entornos corporativos se recomienda lightgbm o xgboost
+
+data:
+  path: data/superstore.csv
+
+split:
+  test_size: 0.2
+  random_state: 42
+
+model:
+  type: neural_network # lightgbm | xgboost | neural_network (optional)
+
+  params:
+    lightgbm:
+      n_estimators: 300
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8
+      random_state: 42
+
+    xgboost:
+      n_estimators: 300
+      learning_rate: 0.05
+      max_depth: 4
+      subsample: 0.8
+      colsample_bytree: 0.8
+      reg_alpha: 0.1
+      reg_lambda: 1.0
+      random_state: 42
+
+    neural_network:
+      hidden_layers: [64, 32]
+      learning_rate: 0.001
+      batch_size: 32
+      epochs: 50
+      validation_split: 0.2
+
+outputs:
+  kpis: outputs/kpis.csv
+  predictions: outputs/predictions.csv
+  metrics: outputs/model_metrics.txt
+
+
+logging:
+  level: INFO
+  file: outputs/pipeline.log
+
+features:
+  numeric:
+    - Quantity
+    - Discount
+    - Profit
+    - Shipping_Days
+    - Order.Year
+
+  categorical:
+    - Category
+    - Region
+    - Ship.Mode
+
+derived_features:
+  shipping_days:
+    type: difference_days
+    start_date: Ship.Date
+    end_date: Order.Date
+    output_name: Shipping_Days
+
+  order_year:
+    type: extract_year
+    source_date: Order.Date
+    output_name: Order.Year
